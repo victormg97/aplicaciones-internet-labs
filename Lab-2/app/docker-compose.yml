@@ -1,5 +1,6 @@
 version: '3'
 services:
+  # Servicio web (utilizando Nginx)
   nginx:
     image: nginx:latest
     container_name: lab2
@@ -7,3 +8,45 @@ services:
       - "8080:80"
     volumes:
       - ./www:/usr/share/nginx/html:ro
+      #- ./nginx:/etc/nginx/conf.d
+
+  # Servicio PHP (utilizando PHP-FPM)
+  php:
+    image: php:latest
+    volumes:
+      - ./www:/var/www/html
+
+  # Servicio de base de datos
+  db:
+    image: mysql:latest
+    container_name: lab2db
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: lab2
+      MYSQL_USER: lab2
+      MYSQL_PASSWORD: lab2
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - default
+  
+  # Servicio de phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: lab2phpmyadmin
+    links: 
+      - db:db
+    environment:
+      MYSQL_USER: lab2
+      MYSQL_PASSWORD: lab2
+      MYSQL_ROOT_PASSWORD: lab2 
+    ports:
+      - "8081:80"
+    networks:
+      - default
+
+volumes:
+  db-data: # Volumen para la base de datos
