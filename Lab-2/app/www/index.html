@@ -23,20 +23,27 @@
 
                     </tbody>
                 </table>
+            </div>
+            <div class="row">
+                <form method="POST" action="#" >
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <!-- Botón para guardar los datos en la base de datos -->
+                    <button type="button" id="guardarDatos" class="btn btn-success">Guardar datos</button>
+                </form>
+            </div>
         </div>
-        <div class="row">
-            <form method="POST" action="#" >
-              <div class="mb-3">
-                <label class="form-label">Nombre</label>
-                <input type="text" class="form-control" name="nombre">
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Apellido</label>
-                <input type="test" class="form-control" name="apellido">
-              </div>
-              <button type="submit" class="btn btn-primary">Agregar</button>
-            </form>
-        </div>
-    </div>
-</body>
+
+        <script src="js/obtenerDatos.js"></script> <!-- Script para obtener los datos de la base de datos -->
+        <script src="js/agregarFila.js"></script> <!-- Script para agregar una fila a la tabla -->
+        <script src="js/guardarDatos.js"></script> <!-- Script para guardar los datos en la base de datos -->
+
+    </body>
 </html>
