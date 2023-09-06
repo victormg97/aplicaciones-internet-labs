@@ -55,4 +55,4 @@ Gunicorn does not serve static files, so if you visit 0.0.0.0:8000/admin - the a
 
 ### Infrastructure model
 
-![Infrastructure model](.infragenie/infrastructure_model.png)
+![Infrastructure model](infrastructure_model.png)
