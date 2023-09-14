@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modificar Alumno</title>
+</head>
+<body>
+    <h1>Modificar Alumno</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Mostrar el formulario para modificar los datos del alumno -->
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <a href="{% url 'detalle_alumno' alumno.id %}">Volver a los Detalles del Alumno</a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+/* Estilos para el logo */
+#logo-image {
+    margin-bottom: 20px;
+}
+
+/* Estilos para el encabezado de las asignaturas */
+#asignaturas-heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Estilos para los enlaces de las asignaturas */
+ul li a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Estilos para el botón de gestionar asignaturas */
+#gestionar-btn {
+    margin-top: 20px;
+}

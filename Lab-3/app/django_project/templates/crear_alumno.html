@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar Alumno</title>
+</head>
+<body>
+    <h1>Agregar Alumno a {{ asignatura.nombre }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Alumno</button>
+    </form>
+    <a href="{% url 'detalle_asignatura' asignatura.id %}">Volver a Detalle de Asignatura</a>
+</body>
+</html>

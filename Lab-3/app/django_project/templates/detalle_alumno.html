@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle de Alumno</title>
+</head>
+<body>
+    <h1>Detalle de Alumno</h1>
+
+    <h2>Nombre: {{ alumno.nombre }}</h2>
+    <p>Apellido Paterno: {{ alumno.apellido_paterno }}</p>
+    <p>Apellido Materno: {{ alumno.apellido_materno }}</p>
+    <p>Fecha de Nacimiento: {{ alumno.fecha_de_nacimiento }}</p>
+
+    <!-- Botones -->
+    <a href="{% url 'modificar_alumno' alumno.id %}">Modificar Alumno</a>
+    <a href="{% url 'eliminar_alumno' alumno.id %}">Eliminar Alumno</a>
+    <a href="{% url 'detalle_asignatura' asignatura.id %}">Volver a la Asignatura</a>
+</body>
+</html>
