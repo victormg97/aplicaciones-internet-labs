@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Películas Populares</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for movie in movies %}
+        <div class="col-md-4 mb-4">
+          <div class="card w-auto p-3 h-100 d-inline-block">
+            <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ movie.title }}</h5>
+              <p class="card-text">{{ movie.overview }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    
+    <div class="pagination">
+      <span class="step-links">
+          {% if movies.has_previous %}
+              <a href="?page=1">&laquo; Primero</a>
+              <a href="?page={{ movies.previous_page_number }}">Anterior</a>
+          {% endif %}
+          
+          <span class="current-page">{{ movies.number }}</span>
+          
+          {% if movies.has_next %}
+              <a href="?page={{ movies.next_page_number }}">Siguiente</a>
+              <a href="?page={{ movies.paginator.num_pages }}">Último &raquo;</a>
+          {% endif %}
+      </span>
+    </div>
+  </div>
+{% endblock %}

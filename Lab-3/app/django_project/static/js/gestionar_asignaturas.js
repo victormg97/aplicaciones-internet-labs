@@ -98,7 +98,7 @@ document.addEventListener('click', function (event) {
     if (event.target.classList.contains('btn-edit')) {
         asignaturaId = parseInt(event.target.getAttribute('data-asignatura-id'));
 
-        // set a "Editar asignatura"
+        // set texto a "Editar asignatura"
         const modal = document.getElementById('modalEditarAsignatura');
         modal.querySelector('.modal-title').textContent = 'Editar asignatura';
         crear_editar = 1;
@@ -106,8 +106,6 @@ document.addEventListener('click', function (event) {
         // Actualiza la acción del formulario con el id de la asignatura
         const formularioModificarAccion = document.getElementById('formularioEditarAsignatura');
         formularioModificarAccion.action = `/asignaturas/${asignaturaId}/modificar/`;
-
-        console.log('Editar asignatura con ID:', asignaturaId);
 
         // Obtener los datos de la asignatura para prellenar el formulario
         const asignatura = asignaturas.find(asignatura => asignatura.asignatura_id === asignaturaId);
@@ -122,7 +120,6 @@ document.addEventListener('click', function (event) {
     // Botón para eliminar asignatura
     if (event.target.classList.contains('btn-delete')) {
         asignaturaId = parseInt(event.target.getAttribute('data-asignatura-id'));
-        console.log('Eliminar asignatura con ID:', asignaturaId);
 
         Swal.fire({
             title: '¿Estás seguro?',
@@ -214,7 +211,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     formularioModificar.addEventListener('submit', function (e) {
         e.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
-        console.log('Formulario enviado');
 
         const formData = new FormData(formularioModificar);
         const nombre = document.getElementById('editNombre').value;
@@ -238,8 +234,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         const url = response.url;
 
                         const asignatura_id_local = parseInt(url.split('/').slice(-2)[0]);
-
-                        console.log('Asignatura creada con ID:', asignatura_id_local);
 
                         // Agregar la asignatura a la lista
                         asignaturas.push({

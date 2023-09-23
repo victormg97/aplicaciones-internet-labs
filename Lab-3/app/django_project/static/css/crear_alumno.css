@@ -1,0 +1,15 @@
+.modal-dialog {
+    max-width: 500px;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-footer {
+    padding: 1rem;
+}

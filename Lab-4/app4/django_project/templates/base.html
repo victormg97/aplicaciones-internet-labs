@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicaciones de Internet</title>
+    <!-- <link rel="stylesheet" href="{% static 'tu-estilo.css' %}"> -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
+</head>
+<body>
+    <header>
+        <!-- Aquí puedes colocar el encabezado común a todas las páginas -->
+        <h1>Aplicaciones de Internet</h1>
+        <nav>
+            <!-- Agrega tus enlaces de navegación aquí -->
+            <ul>
+                <li><a href="/">Ir a Inicio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Aquí se llenará el contenido específico de cada página -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- Pie de página común a todas las páginas -->
+        <p>&copy; {{ year }} Tu Sitio Web</p>
+    </footer>
+
+    <!-- Agrega tus scripts JavaScript aquí, si es necesario -->
+    <script src="{% static 'tu-script.js' %}"></script>
+</body>
+</html>

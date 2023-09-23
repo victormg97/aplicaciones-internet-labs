@@ -87,22 +87,62 @@ def eliminar_asignatura(request, asignatura_id):
     
 def crear_alumno(request, asignatura_id):
     # Obtén la asignatura específica por su ID
-    asignatura = Asignatura.objects.get(pk=asignatura_id)
+    asignatura = get_object_or_404(Asignatura, pk=asignatura_id)
 
     if request.method == 'POST':
         form = AlumnoForm(request.POST)
+        print(form)
         if form.is_valid():
             alumno = form.save()
+            # mostrar alumno en consola
+            print(alumno)
             # Asocia este alumno a la asignatura obtenida
             asignatura.alumnos.add(alumno)
             return redirect('detalle_asignatura', asignatura_id=asignatura_id)
     else:
         form = AlumnoForm()
 
-    return render(request, 'crear_alumno.html', {'form': form, 'asignatura': asignatura})
+    return render(request, 'index.html', {'form': form, 'asignatura': asignatura})
+
+def agregar_alumno_a_asignatura(request, asignatura_id, alumno_id):
+    # Obtener la asignatura y el alumno existente
+    asignatura = get_object_or_404(Asignatura, pk=asignatura_id)
+    alumno = get_object_or_404(Alumno, pk=alumno_id)
+
+    # Agregar al alumno a la asignatura
+    asignatura.alumnos.add(alumno)
+
+    # Redirigir de vuelta al detalle de la asignatura
+    return redirect('detalle_asignatura', asignatura_id=asignatura.id)
+
+def listar_alumnos(request):
+    alumnos = Alumno.objects.all()
+    data = []
+
+    for alumno in alumnos:
+        detalle_url = reverse('detalle_alumno', args=[alumno.id])
+        editar_url = reverse('modificar_alumno', args=[alumno.id])
+        eliminar_url = reverse('eliminar_alumno', args=[alumno.id])
+        data.append({
+            'nombre': alumno.nombre,
+            'apellido_paterno': alumno.apellido_paterno,
+            'apellido_materno': alumno.apellido_materno,
+            'fecha_nacimiento': alumno.fecha_nacimiento,
+            'detalle_url': detalle_url,
+            'editar_url': editar_url,
+            'eliminar_url': eliminar_url,
+            'alumno_id': alumno.id,
+        })
+
+    return JsonResponse(data, safe=False)
 
 def detalle_alumno(request, alumno_id):
-    alumno = get_object_or_404(Alumno, pk=alumno_id)
+    try:
+        alumno = Alumno.objects.get(pk=alumno_id)
+    except Alumno.DoesNotExist:
+        # Si el alumno no existe, redirige a la página de asignaturas
+        return redirect('index')  # Ajusta el nombre de la vista según corresponda
+
 
     # Obtén la asignatura asociada al alumno
     asignatura = alumno.asignatura.first()  # Suponiendo que un alumno puede estar en una sola asignatura
@@ -138,3 +178,14 @@ def eliminar_alumno(request, alumno_id):
         return redirect('detalle_asignatura', asignatura_id=asignatura.id)
 
     return render(request, 'eliminar_alumno.html', {'alumno': alumno})
+
+def remover_alumno_asignatura(request, asignatura_id, alumno_id):
+    # Obtener la asignatura y el alumno existente
+    asignatura = get_object_or_404(Asignatura, pk=asignatura_id)
+    alumno = get_object_or_404(Alumno, pk=alumno_id)
+
+    # Remover al alumno de la asignatura
+    asignatura.alumnos.remove(alumno)
+
+    # Redirigir de vuelta al detalle de la asignatura
+    return redirect('detalle_asignatura', asignatura_id=asignatura.id)
