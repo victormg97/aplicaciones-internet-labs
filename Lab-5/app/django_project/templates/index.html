@@ -8,19 +8,7 @@
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
         <script type="text/javascript">
-            function load_file(){
-                $.ajax({
-                  url: 'https://apis.digital.gob.cl/fl/feriados/2013',
-                  headers: {"Access-Control-Allow-Origin": "*"},
-                  type: 'GET',
-                  success : function(response) {
-                    console.log('test');
-                  },
-                cache: false,
-                processData: false,
-                contentType: false,
-                });
-              }
+            
         </script>
     </head>
 <body>
@@ -28,12 +16,10 @@
         <div class="row">
             <img src="{% static 'images/userena.svg' %}" class="rounded" style="width:200px"/>
             <h1>Aplicaciones de Internet</h1>
-            <h3>Feriados Legales</h3>
+            <h3>Movies</h3>
             <form action="">
-                <select name="years" id="years" onchange="load_file()">
-                    
+                <select name="genres" id="genres" >
                         <option value=""></option>
-                    
                 </select>
             </form>
             <table class="table table-striped">
