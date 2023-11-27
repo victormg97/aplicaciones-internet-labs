@@ -40,6 +40,7 @@ def gestionar_asignaturas(request):
 
 def listar_asignaturas(request):
     asignaturas = Asignatura.objects.all()
+    
     data = []
 
     for asignatura in asignaturas:
